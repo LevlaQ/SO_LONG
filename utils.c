@@ -1,44 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 14:21:06 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/02 12:19:35 by gyildiz          ###   ########.fr       */
+/*   Created: 2025/03/02 12:00:05 by gyildiz           #+#    #+#             */
+/*   Updated: 2025/03/02 13:12:53 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
-char	*ft_substr_m(char *s, unsigned int start, size_t len)
-{
-	size_t	slen;
-	size_t	i;
-	char	*substr;
-
-	if (s == NULL)
-		return (NULL);
-	slen = ft_strlen_m(s);
-	if (start >= slen)
-		return (ft_strdup_m(""));
-	if (start + len > slen)
-		len = slen - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (substr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && s[start + i])
-	{
-		substr[i] = s[start + i];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
-
-char	*ft_strdup_m(char *s1)
+char	*ft_strdup_modified(char *s1)
 {
 	size_t	str_size;
 	size_t	chr_size;
@@ -47,7 +21,7 @@ char	*ft_strdup_m(char *s1)
 
 	if (!s1)
 		return (NULL);
-	str_size = ft_strlen_m(s1) + 1;
+	str_size = ft_strlen(s1) + 1;
 	chr_size = sizeof(char);
 	i = 0;
 	dub = malloc(str_size * chr_size);
@@ -62,7 +36,7 @@ char	*ft_strdup_m(char *s1)
 	return (dub);
 }
 
-char	*ft_strjoin_m(char *s1, char *s2)
+char	*ft_strjoin_modified(char *s1, char *s2)
 {
 	size_t	st1;
 	size_t	st2;
@@ -70,9 +44,9 @@ char	*ft_strjoin_m(char *s1, char *s2)
 	char	*joined;
 
 	if (!s1)
-		return (ft_strdup_m(s2));
-	st1 = ft_strlen_m(s1);
-	st2 = ft_strlen_m(s2);
+		return (ft_strdup(s2));
+	st1 = ft_strlen_modified(s1);
+	st2 = ft_strlen_modified(s2);
 	joined = (char *)malloc(sizeof(char) * (st1 + st2 + 1));
 	if (!joined)
 		return (NULL);
@@ -90,26 +64,7 @@ char	*ft_strjoin_m(char *s1, char *s2)
 	return (joined);
 }
 
-int	find_the_nl(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		if ((char)c == s[i])
-			return (1);
-		else
-			i++;
-	}
-	if ((char)c == s[i])
-		return (1);
-	return (0);
-}
-
-size_t	ft_strlen_m(char *s)
+size_t	ft_strlen_modified(char *s)
 {
 	size_t	a;
 

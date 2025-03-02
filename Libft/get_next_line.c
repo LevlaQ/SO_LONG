@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:21:10 by gyildiz           #+#    #+#             */
-/*   Updated: 2024/12/22 16:18:49 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/02 12:20:31 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*refresh_the_stat(char	*stat)
 	char	*refreshed;
 
 	cnt_nl = 0;
-	stat_len = ft_strlen(stat);
+	stat_len = ft_strlen_m(stat);
 	while (*(stat + cnt_nl) != '\n' && *(stat + cnt_nl) != '\0')
 	{
 		cnt_nl++;
@@ -30,7 +30,7 @@ static char	*refresh_the_stat(char	*stat)
 		return (NULL);
 	}
 	else
-		refreshed = ft_substr(stat, (cnt_nl + 1), (stat_len - (cnt_nl + 1)));
+		refreshed = ft_substr_m(stat, (cnt_nl + 1), (stat_len - (cnt_nl + 1)));
 	if (!refreshed)
 		return (NULL);
 	free (stat);
@@ -51,7 +51,7 @@ static char	*extract_line(char *stat)
 	}
 	if (*(stat + count_to_n) == '\n')
 		count_to_n++;
-	line = ft_substr(stat, 0, (count_to_n));
+	line = ft_substr_m(stat, 0, (count_to_n));
 	if (!line)
 		return (NULL);
 	return (line);
@@ -76,7 +76,7 @@ static char	*read_into_buffer_and_join_to_stat(int fd, char	*stat)
 			return (free(readed), NULL);
 		}
 		readed[return_of_read] = '\0';
-		stat = ft_strjoin(stat, readed);
+		stat = ft_strjoin_m(stat, readed);
 		if (stat[0] == '\0' && return_of_read == 0)
 		{
 			return (free(readed), free(stat), NULL);

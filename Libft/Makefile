@@ -6,7 +6,7 @@
 #    By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 13:21:49 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/01 14:19:34 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/02 13:07:19 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ SRCS =			ft_memset.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c\
 
 OBJS =			$(SRCS:.c=.o)
 
-CC =			cc
+CC =			gcc
 
-CFLAGS =		-Wall -Wextra -Werror
+CFLAGS =		-g
 
 all:			$(NAME)
 

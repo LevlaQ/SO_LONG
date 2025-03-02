@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:20:55 by gyildiz           #+#    #+#             */
-/*   Updated: 2024/12/22 16:23:25 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/02 12:21:09 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # endif
 
 char		*get_next_line(int fd);
-char		*ft_substr(char *s, unsigned int start, size_t len);
-char		*ft_strdup(char *s1);
-char		*ft_strjoin(char *s1, char*s2);
+char		*ft_substr_m(char *s, unsigned int start, size_t len);
+char		*ft_strdup_m(char *s1);
+char		*ft_strjoin_m(char *s1, char*s2);
 int			find_the_nl(char *s, int c);
-size_t		ft_strlen(char *s);
+size_t		ft_strlen_m(char *s);
 
 #endif

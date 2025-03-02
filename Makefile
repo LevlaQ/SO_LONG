@@ -6,11 +6,11 @@
 #    By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 13:58:08 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/01 14:13:44 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/02 13:03:52 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =			Error_handling.c 
+SRCS =			so_long_main.c error_handling.c utils.c
 				
 OBJS =			$(SRCS:.c=.o)
 
@@ -18,8 +18,8 @@ EXE_NAME =		so_long
 
 LIBFT =			./Libft/libft.a
 
-CC =			cc
-CFLAGS =		-Wall -Wextra -Werror
+CC =			gcc
+CFLAGS =		-g
 
 all:			$(LIBFT) $(EXE_NAME)
 
