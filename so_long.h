@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/02 15:11:03 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:20:45 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ typedef	struct s_map
 int		error_main(int argc, char **argv);
 int		check_filename(char *s);
 int		verify_file(char *s);
-int		check_valid_chars(int fd);
 char	*ft_strdup_modified(char *s1);
 char	*ft_strjoin_modified(char *s1, char *s2);
 size_t	ft_strlen_modified(char *s);
-char	*file_to_string(int fd);
+char	*file_to_string(char *s);
+int		check_map_chars(char *s);
+int		check_map_elements(char *s);
 
 #endif
