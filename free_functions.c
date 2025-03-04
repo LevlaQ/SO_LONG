@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 13:34:24 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/04 14:43:14 by gyildiz          ###   ########.fr       */
+/*   Created: 2025/03/04 13:22:11 by gyildiz           #+#    #+#             */
+/*   Updated: 2025/03/04 13:27:25 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+void	free_2d_arr(char **strings)
 {
-	int	i;
+	size_t	i;
 
+	if (!strings)
+		return ;
 	i = 0;
-	while (s[i])
+	while (strings[i])
 	{
-		if ((char)c == s[i])
-			return ((char *)&s[i]);
-		else
-			i++;
+		free(strings[i]);
+		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (NULL);
+	free(strings);
 }

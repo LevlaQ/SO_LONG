@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/03 14:20:45 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:25:06 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,20 @@ typedef	struct s_map
 	char	**map_copy;
 }			t_map;
 
-int		error_main(int argc, char **argv);
-int		check_filename(char *s);
-int		verify_file(char *s);
 char	*ft_strdup_modified(char *s1);
 char	*ft_strjoin_modified(char *s1, char *s2);
-size_t	ft_strlen_modified(char *s);
 char	*file_to_string(char *s);
+void	free_2d_arr(char **strings);
+int		error_main(int argc, char **argv, t_map **st);
+int		check_filename(char *s);
+int		verify_file(char *s);
+size_t	ft_strlen_modified(char *s);
 int		check_map_chars(char *s);
 int		check_map_elements(char *s);
+int		file_to_string_matrix(char *s, t_map **st);
+int		validate_map_shape(t_map **st);
+int		validate_walls(t_map **st);
+
+
 
 #endif

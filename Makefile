@@ -6,11 +6,11 @@
 #    By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 13:58:08 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/02 13:03:52 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/04 15:10:38 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =			so_long_main.c error_handling.c utils.c
+SRCS =			so_long_main.c free_functions.c error_handling.c utils.c
 				
 OBJS =			$(SRCS:.c=.o)
 
