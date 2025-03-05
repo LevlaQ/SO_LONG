@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/04 17:29:29 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/05 15:16:09 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	error_main(int argc, char **argv, t_map **st)
 		return (write(2, "Error: Map is not rectangle\n", 28), 0);
 	if (!(validate_walls(st)))
 		return (write(2, "Error: Map is not enclosed with walls\n", 38), 0);
+	if (!(player_can_escape(st)))
+		return (write(2, "Error: Player escape impossible\n", 32), 0);
 	return (1);
 }
 
@@ -86,10 +88,9 @@ char	*file_to_string(char *s)
 			joined = ft_strdup_modified(new);
 		else
 			joined = ft_strjoin_modified(joined, new);
-		free (new);
 		new = get_next_line(fd);
 	}
-	close(fd);
+	close(fd); //Burada new ile alakalı bir sorunum var mem leak
 	return (joined);
 }
 
@@ -216,4 +217,109 @@ int	validate_walls(t_map **st)
 	
 }
 
+/*
+	Bulmak istediğim karakterin, varsa eğer, koordinatlarını struct içerisine yazıyor
+	Eğer floodfill başarılı bir şekilde çalışırsa benim elimde oyuncumun başlangıç pozisyonu olacak
+*/
+int	find_the_char(t_map **st, char c)
+{
+	int	y;
+	int	x;
 
+	y = 1;
+	x = 1;
+	while((*st)->map_copy[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
+	{
+		while((*st)->map_copy[x])
+		{
+			if((*st)->map_copy[y][x] == c)
+			{
+				(*st)->y_p = y;
+				(*st)->x_p = x;
+				return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+int	player_can_escape(t_map **st)
+{
+	char	*joined;
+
+	find_the_char(st, 'P');
+	flood_exit(st, (*st)->y_p, (*st)->x_p);
+	print_the_map(st);
+	printf("\n\n");
+	print_the_ori_map(st);
+	if (!find_the_char(st, 'E'))
+		return (0);
+	return (1);
+}
+
+/*
+	SIGSEV yersem buradan yerim, fena yerim
+	İlk elemandan geriye gitmeye çalışırsam segmentasyon yerim
+	Harita net olarak duvarlarla kaplı, bunun kontrolü önceden 
+	yapılmıştı, sınır için harita uzunluk genişlik hesabı yapmayayım
+*/
+void	flood_exit(t_map **st, int y, int x)
+{
+	char	new;
+	char	wall;
+
+	new = 'F';
+	wall = '1';
+	if((*st)->map_copy[y][x] == new
+		|| (*st)->map_copy[y][x] == wall) //Eğer harita sınırları dışına çıkmamışsam veya duvara rastlamışsam bir şey yapma
+			return ;
+	else
+	{
+		(*st)->map_copy[y][x] = new;
+		flood_exit(st, y + 1, x);
+		flood_exit(st, y - 1, x);
+		flood_exit(st, y, x + 1);
+		flood_exit(st, y, x - 1);
+	}
+}
+
+/*
+	Debug fonksiyonu
+*/
+void	print_the_map(t_map **st)
+{
+	int x = 0;
+	int y = 0;
+
+	while((*st)->map_copy[y] != NULL)
+	{
+		x = 0;
+		while((*st)->map_copy[y][x] != '\0')
+		{
+			printf("%c", (*st)->map_copy[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+}
+
+void	print_the_ori_map(t_map **st)
+{
+	int x = 0;
+	int y = 0;
+
+	while((*st)->map[y] != NULL)
+	{
+		x = 0;
+		while((*st)->map[y][x] != '\0')
+		{
+			printf("%c", (*st)->map[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+}

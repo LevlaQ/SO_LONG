@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/04 14:25:06 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/05 15:13:29 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef	struct s_map
 {
 	char	**map;
 	char	**map_copy;
+	int		y_p; //Old_color new_color'ı ben fonksiyon içerisinde halledebilirim (umarım)
+	int		x_p;
 }			t_map;
 
 char	*ft_strdup_modified(char *s1);
@@ -39,6 +41,11 @@ int		check_map_elements(char *s);
 int		file_to_string_matrix(char *s, t_map **st);
 int		validate_map_shape(t_map **st);
 int		validate_walls(t_map **st);
+int		find_the_char(t_map **st, char c);
+void	flood_exit(t_map **st, int y, int x);
+int		player_can_escape(t_map **st);
+void	print_the_map(t_map **st); //Debug fonksiyonu
+void	print_the_ori_map(t_map **st); //Debug fonksiyonu
 
 
 
