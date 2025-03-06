@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/04 13:27:25 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:01:20 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ void	free_2d_arr(char **strings)
 		i++;
 	}
 	free(strings);
+}
+
+void	free_maps(t_map **st)
+{
+	free_2d_arr((*st)->map);
+	free_2d_arr((*st)->map_copy);
 }

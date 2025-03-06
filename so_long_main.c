@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:45:39 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/04 17:17:57 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:27:27 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	**map_st;
+	t_map	*map_st;
 	
-	map_st = ft_calloc(1, sizeof(t_map **));
-	if(!error_main(argc, argv, map_st))
+	map_st = ft_calloc(1, sizeof(t_map *));
+	if(!error_main(argc, argv, &map_st))
 		return (free(map_st), 0);
 	else
 		ft_printf("All is well");

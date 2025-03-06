@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 12:00:05 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/02 13:12:53 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:38:21 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_strdup_modified(char *s1)
 		i++;
 	}
 	dub[i] = '\0';
+	free (s1);
 	return (dub);
 }
 
@@ -61,6 +62,7 @@ char	*ft_strjoin_modified(char *s1, char *s2)
 	}
 	joined[st1 + i] = '\0';
 	free (s1);
+	free (s2);
 	return (joined);
 }
 

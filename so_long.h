@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/05 15:13:29 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:01:12 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	flood_exit(t_map **st, int y, int x);
 int		player_can_escape(t_map **st);
 void	print_the_map(t_map **st); //Debug fonksiyonu
 void	print_the_ori_map(t_map **st); //Debug fonksiyonu
+void	free_maps(t_map **st);
 
 
 
