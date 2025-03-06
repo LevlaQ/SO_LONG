@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_map_shape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:16:07 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/06 18:17:48 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 20:57:39 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	player_can_escape(t_map **st)
 	find_the_char(st, 'P');
 	flood_exit(st, (*st)->y_p, (*st)->x_p);
 	if (find_the_char(st, 'E')) //Flood başarısız ise 'E' harfi bulunur.
+		return (0);
+	if (find_the_char(st, 'C'))
 		return (0);
 	return (1);
 }

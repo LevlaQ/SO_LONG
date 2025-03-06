@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/06 18:20:34 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/06 20:57:23 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	error_main(int argc, char **argv, t_map **st)
 	if (!(player_can_escape(st)))
 	{
 		free_maps(st);
-		return (write(2, "Error: Player escape impossible\n", 32), 0);
+		return (write(2, "Error: Player escape impossible/ C left\n", 40), 0);
 	}
 	return (1);
 }
