@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/06 20:57:14 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/09 11:10:23 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_strdup_modified(char *s1);
 char	*ft_strjoin_modified(char *s1, char *s2);
 char	*file_to_string(char *s);
 void	free_2d_arr(char **strings);
+void	free_maps(t_map **st);
+void	p_error(char *message);
 int		error_main(int argc, char **argv, t_map **st);
 int		check_filename(char *s);
 int		verify_file(char *s);
@@ -46,7 +48,6 @@ void	flood_exit(t_map **st, int y, int x);
 int		player_can_escape(t_map **st);
 void	print_the_map(t_map **st); //Debug fonksiyonu
 void	print_the_ori_map(t_map **st); //Debug fonksiyonu
-void	free_maps(t_map **st);
 
 
 

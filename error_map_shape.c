@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:16:07 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/06 20:57:39 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/09 11:15:58 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	validate_map_shape(t_map **st)
 	while((*st)->map[y])
 	{
 		if(length != ft_strlen((*st)->map[y])) //Eğer  birisi ilk ölçülen sütundan farklı bir uzunlukta ise
-			return (0); //= döndür ama hata durumu freelemem lazım
+			return (free_maps(st), 0); //= döndür ama hata durumu freelemem lazım
 		y++;
 	}
 	return (1);
@@ -73,9 +73,9 @@ int	validate_walls(t_map **st)
 	while ((*st)->map[0][x])
 	{
 		if((*st)->map[0][x] != '1')
-			return (0); //Duvarlar boydan boya mı kontrolü
+			return (free_maps(st), 0); //Duvarlar boydan boya mı kontrolü
 		if((*st)->map[y - 1][x] != '1')
-			return (0);
+			return (free_maps(st), 0);
 		x++;
 	}
 	return (1);
@@ -89,9 +89,9 @@ int	player_can_escape(t_map **st)
 	find_the_char(st, 'P');
 	flood_exit(st, (*st)->y_p, (*st)->x_p);
 	if (find_the_char(st, 'E')) //Flood başarısız ise 'E' harfi bulunur.
-		return (0);
+		return (free_maps(st), 0);
 	if (find_the_char(st, 'C'))
-		return (0);
+		return (free_maps(st), 0);
 	return (1);
 }
 
