@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:16:07 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/09 11:15:58 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/10 14:07:47 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	player_can_escape(t_map **st)
 	char	*joined;
 
 	find_the_char(st, 'P');
-	flood_exit(st, (*st)->y_p, (*st)->x_p);
+	flood_exit(st, (*st)->P_y, (*st)->P_x);
 	if (find_the_char(st, 'E')) //Flood başarısız ise 'E' harfi bulunur.
 		return (free_maps(st), 0);
 	if (find_the_char(st, 'C'))

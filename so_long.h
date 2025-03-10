@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/09 11:10:23 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/10 14:14:36 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,28 @@ typedef	struct s_map
 {
 	char	**map;
 	char	**map_copy;
-	int		y_p; //Old_color new_color'ı ben fonksiyon içerisinde halledebilirim (umarım)
-	int		x_p;
+	int		P_y;
+	int		P_x;
+	int		C_count;
+	t_tile	*tiles;
+	t_minx	*mlx;
+	
 }			t_map;
+
+typedef	struct s_tile
+{
+	void	*floor;
+	void	*wall;
+	void	*player;
+	void	*collect;
+	void	*exit;
+}			t_tile;
+
+typedef	struct s_minx
+{
+	void	*mlx_ptr;
+	void	*mlx_window;
+}			t_minx;
 
 char	*ft_strdup_modified(char *s1);
 char	*ft_strjoin_modified(char *s1, char *s2);
@@ -37,6 +56,7 @@ void	p_error(char *message);
 int		error_main(int argc, char **argv, t_map **st);
 int		check_filename(char *s);
 int		verify_file(char *s);
+int		check_xpm_files(void);
 size_t	ft_strlen_modified(char *s);
 int		check_map_chars(char *s);
 int		check_map_elements(char *s);

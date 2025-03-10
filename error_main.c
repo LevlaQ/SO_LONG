@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/09 11:16:31 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/10 13:59:32 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	error_main(int argc, char **argv, t_map **st)
 		return (p_error("Error :Wrong file extension\n"), 0);
 	if (!(verify_file(argv[1])))
 		return (p_error("Error :No file or no proper permissions\n"), 0);
+	if (!(check_xpm_files()))
+		return (p_error("Error :No xpm files or no proper permissions\n"), 0);
 	if (!(check_map_chars(argv[1])))
 		return (p_error("Error :Invalid chars in map/ malloc fail\n"), 0);
 	if (!(check_map_elements(argv[1])))
@@ -66,5 +68,32 @@ int	verify_file(char *s)
 		return (0);
 	else
 		close(fd);
+	return (1);
+}
+
+int	check_xpm_files(void)
+{
+	int	fd;
+
+	fd = open("./xpms/0.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close (fd);
+	fd = open("./xpms/1.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close (fd);
+	fd = open("./xpms/collectible.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close(fd);
+	fd = open("./xpms/exit.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close(fd);
+	fd = open("./xpms/player.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close(fd);
 	return (1);
 }
