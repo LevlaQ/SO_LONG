@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:15:48 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/10 14:07:47 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/11 13:45:26 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,22 @@ int	find_the_char(t_map **st, char c)
 		y++;
 	}
 	return (0);
+}
+
+void	count_the_coins(t_map **st, char *s)
+{
+	int		i;
+	int		count_c;
+	char	*joined;
+
+	joined = file_to_string(s);
+	i = 0;
+	count_c = 0;
+	while(joined[i])
+	{
+		if(joined[i] == 'C')
+			count_c++;
+		i++;
+	}
+	(*st)->C_count = count_c;
 }

@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/10 13:59:32 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/11 14:12:43 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	error_main(int argc, char **argv, t_map **st)
 		return (p_error("Error: Map is not enclosed with walls\n"), 0);
 	if (!(player_can_escape(st)))
 		return (p_error("Error: Player escape impossible/ C left\n"), 0);
+	count_the_coins(st, argv[1]);
 	return (1);
 }
 
@@ -71,6 +72,7 @@ int	verify_file(char *s)
 	return (1);
 }
 
+//TODO bu fonksiyondan kurtul güzelim
 int	check_xpm_files(void)
 {
 	int	fd;

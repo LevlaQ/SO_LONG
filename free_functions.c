@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 13:22:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/09 11:09:54 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/11 13:13:01 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void	free_maps(t_map **st)
 void	p_error(char *message)
 {
 	write(2, message, ft_strlen(message));
+}
+
+/*
+	Error kontrollerinden geçtikten sonra oyun açıldıktan sonra hata durumunda exit yapacak fonksiyon
+*/
+void	print_error_and_exit(char *s, int error_no, int exit_no)
+{
+	errno = error_no; //TODO look at flags
+	perror(s);
+	exit(exit_no);
 }
