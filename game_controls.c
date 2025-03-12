@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_main.c                                     :+:      :+:    :+:   */
+/*   game_controls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 14:45:39 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 14:04:51 by gyildiz          ###   ########.fr       */
+/*   Created: 2025/03/12 13:01:44 by gyildiz           #+#    #+#             */
+/*   Updated: 2025/03/12 13:55:57 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+//int mlx_key_hook(void *win_ptr, int (*funct_ptr)(), void *param)
+
+void	process_input(t_map *map)
 {
-	t_map	*map_st;
-	
-	map_st = ft_calloc(1, sizeof(t_map));
-	map_st->tiles = ft_calloc(1, sizeof(t_tile));
-	map_st->mlx = ft_calloc(1, sizeof(t_minx));
-	if(!error_main(argc, argv, map_st))
-		return (free(map_st), free(map_st->tiles), free(map_st->mlx), -1);
-	start_and_exit_game(map_st);
-	return (0);
+	mlx_key_hook(map->mlx->mlx_ptr, keyhook_a, map);
 }
+
+int		keyhook_a(int keycode, t_map *map)
+{
+	printf("%d\n", keycode);
+}
+

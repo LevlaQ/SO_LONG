@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 12:53:43 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:19:01 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ int	check_xpm_files(void)
 		return (close(fd), 0);
 	close(fd);
 	fd = open("./xpms/player.xpm", O_RDONLY);
+	if (fd < 0)
+		return (close(fd), 0);
+	close(fd);
+	fd = open("./xpms/win.xpm", O_RDONLY);
 	if (fd < 0)
 		return (close(fd), 0);
 	close(fd);

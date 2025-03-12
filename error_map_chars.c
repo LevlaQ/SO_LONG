@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:15:48 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 12:44:10 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 17:09:04 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,11 @@ int	find_the_char(t_map *st, char c)
 		{
 			if(st->map_copy[y][x] == c)
 			{
-				st->P_y = y;
-				st->P_x = x;
+				if(c = 'P') //Eğer aradığım karakter P ise konumunu struct'yaz
+				{
+					st->P_y = y;
+					st->P_x = x;
+				}
 				return (1);
 			}
 			x++;

@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 12:44:36 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 17:40:48 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	struct s_tile
 	void	*player;
 	void	*collect;
 	void	*exit;
+	void	*win;
 }			t_tile;
 
 typedef	struct s_minx
@@ -46,6 +47,7 @@ typedef	struct s_map
 	int		P_y;
 	int		P_x;
 	int		C_count;
+	int		P_moves;
 	t_tile	*tiles;
 	t_minx	*mlx;
 	
@@ -78,6 +80,15 @@ void	start_and_exit_game(t_map *map);
 void	pointer_to_xpm(t_map *map);
 void	measure_map(t_map *map);
 void	render_tiles(t_map *map, int y, int x);
+void	put_image_to_window(t_map *map, int x, int y, void *img_ptr);
+void	*put_xpm_to_file(t_map *map, char *filepath);
+void	process_input(t_map *map);
+int		keyhook(int keycode, t_map *map);
+void	move_left(t_map *map);
+void	move_right(t_map *map);
+void	move_up(t_map *map);
+void	move_down(t_map *map);
+void	exit_the_program(void);
 
 
 
