@@ -6,13 +6,13 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/11 14:12:43 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:53:43 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	error_main(int argc, char **argv, t_map **st)
+int	error_main(int argc, char **argv, t_map *st)
 {
 	if (argc != 2)
 		return (p_error("Error :Wrong argument count\n"), 0);
@@ -38,7 +38,7 @@ int	error_main(int argc, char **argv, t_map **st)
 	return (1);
 }
 
-//Leak ihtimali!!!
+//Dosya uzantısı .ber.ber.ber.ber şeklinde bile gidebilir, her zaman son noktadan sonraya bakılır
 int	check_filename(char *s)
 {
 	int		i;
@@ -53,10 +53,7 @@ int	check_filename(char *s)
 		return (0);
 	if (s[i - 4] != '.')
 		return (0);
-	no_exten = ft_substr(s, 0, i - 4); //No exten malloc ile açıldı //TODO search file extensions
-	if (ft_strchr(no_exten, '.') != NULL)
-		return (free(no_exten), 0);
-	return (free(no_exten), 1);
+	return (1);
 }
 
 //Eğer bu fonksiyon doğru ise hemen karakter kontrollerine girsin
@@ -72,7 +69,6 @@ int	verify_file(char *s)
 	return (1);
 }
 
-//TODO bu fonksiyondan kurtul güzelim
 int	check_xpm_files(void)
 {
 	int	fd;

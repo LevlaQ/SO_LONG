@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:15:48 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/11 13:45:26 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:44:10 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,22 @@ int	check_map_elements(char *s)
 	Eğer floodfill başarılı bir şekilde çalışırsa benim elimde oyuncumun başlangıç pozisyonu olacak
 	
 */
-int	find_the_char(t_map **st, char c)
+int	find_the_char(t_map *st, char c)
 {
 	int	y;
 	int	x;
 
 	y = 1;
 	x = 1;
-	while((*st)->map_copy[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
+	while(st->map_copy[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
 	{
 		x = 1;
-		while((*st)->map_copy[x])
+		while(st->map_copy[x])
 		{
-			if((*st)->map_copy[y][x] == c)
+			if(st->map_copy[y][x] == c)
 			{
-				(*st)->P_y = y;
-				(*st)->P_x = x;
+				st->P_y = y;
+				st->P_x = x;
 				return (1);
 			}
 			x++;
@@ -120,7 +120,7 @@ int	find_the_char(t_map **st, char c)
 	return (0);
 }
 
-void	count_the_coins(t_map **st, char *s)
+void	count_the_coins(t_map *st, char *s)
 {
 	int		i;
 	int		count_c;
@@ -135,5 +135,5 @@ void	count_the_coins(t_map **st, char *s)
 			count_c++;
 		i++;
 	}
-	(*st)->C_count = count_c;
+	st->C_count = count_c;
 }

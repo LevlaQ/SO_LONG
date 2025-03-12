@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:37:16 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/11 14:29:27 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:56:36 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	start_and_exit_game(t_map *map)
 	}
 	render_tiles(map, 0, 0);
 	
-	
-	
-	mlx_loop(map->mlx->mlx_ptr); //TODO ne zaman nerede nasıl niçin neden 
+	mlx_loop(map->mlx->mlx_ptr);
 	//mlx_key_hook();//TODO ne zaman nerede nasıl niçin neden 
 }
 
@@ -42,11 +40,13 @@ void	pointer_to_xpm(t_map *map)
 	int		img_w;
 
 	path = "./xpms/0.xpm";
+	img_h = 64;
+	img_w = 64;
 	map->tiles->floor = mlx_xpm_file_to_image(map->mlx->mlx_ptr, path, &img_h,\
-		&img_w); //TODO xpm uzunluğunu genişliğini geri döndürüyor
+		&img_w); //xpm uzunluğunu genişliğini geri döndürüyor, fonksiyonları 
 	path = "./xpms/1.xpm";
 	map->tiles->wall = mlx_xpm_file_to_image(map->mlx->mlx_ptr, path, &img_h,\
-		&img_w); //TODO pointer fail durumu exit kodları eklenecek
+		&img_w);
 	path = "./xpms/collectible.xpm";
 	map->tiles->collect = mlx_xpm_file_to_image(map->mlx->mlx_ptr, path, &img_h,\
 		&img_w);
@@ -69,8 +69,8 @@ void	measure_map(t_map *map)
 		y++;
 	while(map->map[0][x])
 		x++;
-	map->m_height = y;
-	map->m_width = x;
+	map->m_height = y * 64;
+	map->m_width = x * 64;
 }
 
 /*
