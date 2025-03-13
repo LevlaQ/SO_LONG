@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:15:48 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/13 13:06:58 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 23:52:31 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	find_the_char(t_map *st, char **map, char c)
 	while(map[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
 	{
 		x = 1;
-		while(map[x])
+		while(map[y][x])
 		{
 			if(map[y][x] == c)
 			{

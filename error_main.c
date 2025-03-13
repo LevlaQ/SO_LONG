@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/13 13:45:12 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 00:42:27 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	error_main(int argc, char **argv, t_map *st)
 		return (p_error("Error :Invalid chars in map/ malloc fail\n"), 0);
 	if (!(check_map_elements(argv[1])))
 		return (p_error("Error :Must have 1P1E & C≥1/ malloc fail\n"), 0);
+	if(!(check_empty_lines_in_map(argv[1])))
+		return(p_error("Error :Empty line in the map\n"), 0);
 	if (!(file_to_string_matrix(argv[1], st)))
 		return (p_error("Error : ft_split failed\n"), 0);
 	if (!(validate_map_shape(st)))
@@ -71,30 +73,42 @@ int	verify_file(char *s)
 
 int	check_xpm_files(void)
 {
-	if(!check_the_file("./xpms/0.xpm"))
+	if(!verify_file("./xpms/0.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/1.xpm"))
+	if(!verify_file("./xpms/1.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/collectible.xpm"))
+	if(!verify_file("./xpms/collectible.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/exit.xpm"))
+	if(!verify_file("./xpms/exit.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/player.xpm"))
+	if(!verify_file("./xpms/player.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/win.xpm"))
+	if(!verify_file("./xpms/win.xpm"))
 		return (0);
-	if(!check_the_file("./xpms/A.xpm"))
+	if(!verify_file("./xpms/A.xpm"))
 		return (0);
 	return (1);
 }
 
-int	check_the_file(char *s)
+/*
+	Harita içinde boş satırım varsa hata döndürecek
+*/
+int	check_empty_lines_in_map(char *s)
 {
-	int fd;
+	int	i;
+	int	len;
+	char *joined;
 
-	fd = open(s, O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close (fd);
-	return (1);
+	joined = file_to_string(s);
+	len = ft_strlen(joined);
+	while(len > 0 && (joined[len - 1] == '\n'))
+		len--;
+	i = 0;
+	while(i < len - 1)
+	{
+		if(joined[i] == '\n' && joined[i + 1] == '\n')
+			return (free(joined), 0);
+		i++;
+	}
+	return (free(joined), 1);
 }

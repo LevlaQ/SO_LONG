@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/13 15:19:41 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 00:21:21 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int		error_main(int argc, char **argv, t_map *st);
 int		check_filename(char *s);
 int		verify_file(char *s);
 int		check_xpm_files(void);
-int		check_the_file(char *s);
 size_t	ft_strlen_modified(char *s);
 int		check_map_chars(char *s);
 int		check_map_elements(char *s);
+int		check_empty_lines_in_map(char *s);
 int		file_to_string_matrix(char *s, t_map *st);
 int		validate_map_shape(t_map *st);
 int		validate_walls(t_map *st);
