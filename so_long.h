@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:40 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:19:41 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef	struct s_tile
 	void	*exit;
 	void	*win;
 	void	*over;
-	void	*A;
 }			t_tile;
 
 typedef	struct s_minx
@@ -44,6 +43,7 @@ typedef	struct s_map
 {
 	char	**map;
 	char	**map_copy;
+	char	behind;
 	int		m_width;
 	int		m_height;
 	int		P_y;

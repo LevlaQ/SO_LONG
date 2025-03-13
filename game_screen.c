@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:37:16 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:05 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:25:23 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	render_tiles(t_map *map, int y, int x)
 			if(map->map[y][x] == 'W')
 				put_image_to_window(map, x, y, map->tiles->win);
 			if(map->map[y][x] == 'A')
-				put_image_to_window(map, x, y, map->tiles->A);
+				put_image_to_window(map, x, y, map->tiles->over);
 			x++;
 		}
 		y++;
@@ -170,24 +170,31 @@ int	keyhook(int keycode, t_map *map)
 */
 void	move_the_player(t_map *map, int y, int x)
 {
+	map->behind = '0';
 	if(find_the_char(map, map->map, 'W'))
 		return ;
 	else if(map->map[y][x] == '0' || map->map[y][x] == 'C') //Gideceğim pozisyonda çalı veya coin varsa
 	{
 		if(map->map[y][x] == 'C') //Eğer rastladığım şey coin ise
 			map->C_count--;//Coin rastaladıkça bir azaltıyorum
-		move_one_tile_ahead(map, y, x, 'P');
+		if(map->map[map->P_y][map->P_x] == 'A') //İleri ilerleyebiliyorum, ama eski pozisyonum A olacaksa yerine E koymalıyım
+		{
+			map->behind = 'E';
+			move_one_tile_ahead(map, y, x, 'P');
+		}
+		else
+			move_one_tile_ahead(map, y, x, 'P');
 	}
 	else if(map->map[y][x] == 'E' && map->C_count == 0) //Eğer gideceğim pozisyon exit ise ve hiç coin kalmamışsa
-	{
 		move_one_tile_ahead(map, y, x, 'W');
-	}
+	else if(map->map[y][x] == 'E' && map->C_count != 0)
+		move_one_tile_ahead(map, y, x, 'A');
 }
 
 void	move_one_tile_ahead(t_map *map, int y, int x, char new_position)
 {
 	map->map[y][x] = new_position; //Gideceğim yere koyacağım görsel
-	map->map[map->P_y][map->P_x] = '0';//Struct'tan aldığım player pozisyonuna yerleştireceğim görsel
+	map->map[map->P_y][map->P_x] = map->behind;//Struct'tan aldığım player pozisyonuna yerleştireceğim görsel
 	map->P_moves++; //Hamle yaptım bu yüzden hamle sayımı bir arttırıyorum
 	map->P_x = x; //Struct içindeki oyuncu pozisyonumu güncelliyorum
 	map->P_y = y;
@@ -196,13 +203,15 @@ void	move_one_tile_ahead(t_map *map, int y, int x, char new_position)
 
 int	exit_the_program(t_map *st)
 {	
-	free(st->tiles->collect);
-	free(st->tiles->exit);
-	free(st->tiles->floor);
-	free(st->tiles->player);
-	free(st->tiles->wall);
-	free(st->tiles->win);
-	free(st->mlx->mlx_window);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->collect);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->exit);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->floor);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->player);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->wall);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->win);
+	mlx_destroy_image(st->mlx->mlx_ptr, st->tiles->over);
+	mlx_destroy_window(st->mlx->mlx_ptr, st->mlx->mlx_window);
+	mlx_destroy_display(st->mlx->mlx_ptr);
 	free(st->mlx->mlx_ptr);
 	free(st->tiles);
 	free(st->mlx);
