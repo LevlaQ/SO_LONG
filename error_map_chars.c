@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:15:48 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 17:09:04 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:06:58 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,22 @@ int	check_map_elements(char *s)
 /*
 	Bulmak istediğim karakterin, varsa eğer, koordinatlarını struct içerisine yazıyor
 	Eğer floodfill başarılı bir şekilde çalışırsa benim elimde oyuncumun başlangıç pozisyonu olacak
+	Aradığım karakteri bulursa 1, bulamazsa 0 döndürüyor
 	
 */
-int	find_the_char(t_map *st, char c)
+int	find_the_char(t_map *st, char **map, char c)
 {
 	int	y;
 	int	x;
 
 	y = 1;
 	x = 1;
-	while(st->map_copy[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
+	while(map[y]) //Initialize etmesem ft_calloc ile her şey baştan sıfırlandı
 	{
 		x = 1;
-		while(st->map_copy[x])
+		while(map[x])
 		{
-			if(st->map_copy[y][x] == c)
+			if(map[y][x] == c)
 			{
 				if(c = 'P') //Eğer aradığım karakter P ise konumunu struct'yaz
 				{
@@ -139,4 +140,5 @@ void	count_the_coins(t_map *st, char *s)
 		i++;
 	}
 	st->C_count = count_c;
+	free(joined);
 }

@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:16:07 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 12:41:44 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:08:13 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int	validate_walls(t_map *st)
 
 int	player_can_escape(t_map *st)
 {
-	find_the_char(st, 'P');
+	find_the_char(st, st->map_copy, 'P');
 	flood_exit(st, st->P_y, st->P_x);
-	if (find_the_char(st, 'E')) //Flood başarısız ise 'E' harfi bulunur.
+	if (find_the_char(st, st->map_copy, 'E')) //Flood başarısız ise 'E' harfi bulunur.
 		return (free_maps(st), 0);
-	if (find_the_char(st, 'C'))
+	if (find_the_char(st, st->map_copy, 'C'))
 		return (free_maps(st), 0);
 	return (1);
 }

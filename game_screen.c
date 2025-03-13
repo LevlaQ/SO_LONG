@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:37:16 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 17:42:37 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:05 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	start_and_exit_game(t_map *map)
 		print_error_and_exit("Cannot open window", ENOMEM, EXIT_FAILURE);
 	}
 	render_tiles(map, 0, 0); //TODO Program başarılı sonlanana kadar her hareketten sonra tile render edilmeli
-	// process_input(map);
+	if(map->P_moves == 0)
+		ft_printf("%d\r", 0); //İlk sıfırı yazdırması için ekledim
+	process_input(map);
 	mlx_loop(map->mlx->mlx_ptr);
 }
 
@@ -40,12 +42,13 @@ void	start_and_exit_game(t_map *map)
 
 void	pointer_to_xpm(t_map *map)
 {
-	map->tiles->wall = put_xpm_to_file(map, "./xpms/1.xpm");
-	map->tiles->floor = put_xpm_to_file(map, "./xpms/0.xpm");
-	map->tiles->collect = put_xpm_to_file(map, "./xpms/collectible.xpm");
-	map->tiles->player = put_xpm_to_file(map, "./xpms/player.xpm");
-	map->tiles->exit = put_xpm_to_file(map, "./xpms/exit.xpm");
-	map->tiles->win = put_xpm_to_file(map, "./xpms/win.xpm");
+	map->tiles->wall = put_xpm_file_to_image(map, "./xpms/1.xpm");
+	map->tiles->floor = put_xpm_file_to_image(map, "./xpms/0.xpm");
+	map->tiles->collect = put_xpm_file_to_image(map, "./xpms/collectible.xpm");
+	map->tiles->player = put_xpm_file_to_image(map, "./xpms/player.xpm");
+	map->tiles->exit = put_xpm_file_to_image(map, "./xpms/exit.xpm");
+	map->tiles->win = put_xpm_file_to_image(map, "./xpms/win.xpm");
+	map->tiles->over = put_xpm_file_to_image(map, "./xpms/A.xpm");
 }
 
 void	measure_map(t_map *map)
@@ -85,6 +88,8 @@ void	render_tiles(t_map *map, int y, int x)
 				put_image_to_window(map, x, y, map->tiles->player);
 			if(map->map[y][x] == 'W')
 				put_image_to_window(map, x, y, map->tiles->win);
+			if(map->map[y][x] == 'A')
+				put_image_to_window(map, x, y, map->tiles->A);
 			x++;
 		}
 		y++;
@@ -97,7 +102,7 @@ void	put_image_to_window(t_map *map, int x, int y, void *img_ptr)
 		map->mlx->mlx_window, img_ptr, x * 64, y * 64);
 }
 
-void	*put_xpm_to_file(t_map *map, char *filepath)
+void	*put_xpm_file_to_image(t_map *map, char *filepath)
 {
 	char	*tile;
 	int		img_h;
@@ -120,54 +125,88 @@ BURADAN İTİBAREN HAREKETLER BAŞLIYOR
 */
 
 
-// void	process_input(t_map *map)
-// {
-// 	mlx_key_hook(map->mlx->mlx_window, keyhook, map);
-// 	mlx_hook(map->mlx->mlx_window, 17, 0, exit_the_program, map);
-// }
+void	process_input(t_map *map)
+{
+	mlx_key_hook(map->mlx->mlx_window, keyhook, map);
+	mlx_hook(map->mlx->mlx_window, 17, 0, exit_the_program, map);
+}
 
-// /*
-// 	ilgili tuş kodlarını aldıktan sonra ilgili fonksiyonları çağırarak hareket işlemini yaptırır
-// 	her hareketten sonra  haritayı bir daha basar
-// */
-// int		keyhook(int keycode, t_map *map)
-// {
-// 	if(keycode == 97 || keycode == 65361)
-// 	{
-// 		move_left(map);
-// 		return(render_tiles(map, 0, 0), 1);
-// 	}
-// 	if(keycode == 100 || keycode == 65363)
-// 	{
-// 		move_right(map);
-// 		return(render_tiles(map, 0, 0), 1);
-// 	}
-// 	if(keycode == 119 || keycode == 65362)
-// 	{
-// 		move_up(map);
-// 		return(render_tiles(map, 0, 0), 1);
-// 	}
-// 	if(keycode == 115 || keycode == 65364)
-// 	{
-// 		move_down(map);
-// 		return(render_tiles(map, 0, 0), 1);
-// 	}
-// 	if(keycode == 65307)
-// 	{
-// 		exit_the_program();
-// 	}
-// }
+/*
+	ilgili tuş kodlarını aldıktan sonra ilgili fonksiyonları çağırarak hareket işlemini yaptırır
+	her hareketten sonra  haritayı bir daha basar
+*/
+int	keyhook(int keycode, t_map *map)
+{
+	if(keycode == 97 || keycode == 65361)
+	{
+		move_the_player(map, map->P_y, map->P_x - 1);
+		return(render_tiles(map, 0, 0), 1);
+	}
+	if(keycode == 100 || keycode == 65363) //Sütun bir artıyor (x + 1)
+	{
+		move_the_player(map, map->P_y, map->P_x + 1);
+		return(render_tiles(map, 0, 0), 1);
+	}
+	if(keycode == 119 || keycode == 65362)//y - 1 satır azalıyot
+	{
+		move_the_player(map, map->P_y - 1, map->P_x);
+		return(render_tiles(map, 0, 0), 1);
+	}
+	if(keycode == 115 || keycode == 65364) //satır artıyor y + 1
+	{
+		move_the_player(map, map->P_y + 1, map->P_x);
+		return(render_tiles(map, 0, 0), 1);
+	}
+	if(keycode == 65307)
+		exit_the_program(map);
+}
 
 
-// void	move_left(t_map *map)
-// {
-	
-// }
+/*
 
-// void	move_right(t_map *map);
+	Yeni player pozisyonu ataması yapmam lazım
+	Topladığım coini azaltmam laım, 0 olacak sonunda!
+	Gideceğim pozisyon duvar ise hiçbir şey yapmıyor, o yüzden koşulunu eklemedim
+*/
+void	move_the_player(t_map *map, int y, int x)
+{
+	if(find_the_char(map, map->map, 'W'))
+		return ;
+	else if(map->map[y][x] == '0' || map->map[y][x] == 'C') //Gideceğim pozisyonda çalı veya coin varsa
+	{
+		if(map->map[y][x] == 'C') //Eğer rastladığım şey coin ise
+			map->C_count--;//Coin rastaladıkça bir azaltıyorum
+		move_one_tile_ahead(map, y, x, 'P');
+	}
+	else if(map->map[y][x] == 'E' && map->C_count == 0) //Eğer gideceğim pozisyon exit ise ve hiç coin kalmamışsa
+	{
+		move_one_tile_ahead(map, y, x, 'W');
+	}
+}
 
-// void	move_up(t_map *map);
+void	move_one_tile_ahead(t_map *map, int y, int x, char new_position)
+{
+	map->map[y][x] = new_position; //Gideceğim yere koyacağım görsel
+	map->map[map->P_y][map->P_x] = '0';//Struct'tan aldığım player pozisyonuna yerleştireceğim görsel
+	map->P_moves++; //Hamle yaptım bu yüzden hamle sayımı bir arttırıyorum
+	map->P_x = x; //Struct içindeki oyuncu pozisyonumu güncelliyorum
+	map->P_y = y;
+	ft_printf("%d\r", map->P_moves); //Kaç hamle yapmışım yazıyorum
+}
 
-// void	move_down(t_map *map);
-
-// void	exit_the_program(void);
+int	exit_the_program(t_map *st)
+{	
+	free(st->tiles->collect);
+	free(st->tiles->exit);
+	free(st->tiles->floor);
+	free(st->tiles->player);
+	free(st->tiles->wall);
+	free(st->tiles->win);
+	free(st->mlx->mlx_window);
+	free(st->mlx->mlx_ptr);
+	free(st->tiles);
+	free(st->mlx);
+	free_maps(st);
+	free(st);
+	exit(EXIT_SUCCESS);
+}

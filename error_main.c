@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 15:19:01 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:45:12 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,30 @@ int	verify_file(char *s)
 
 int	check_xpm_files(void)
 {
-	int	fd;
+	if(!check_the_file("./xpms/0.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/1.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/collectible.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/exit.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/player.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/win.xpm"))
+		return (0);
+	if(!check_the_file("./xpms/A.xpm"))
+		return (0);
+	return (1);
+}
 
-	fd = open("./xpms/0.xpm", O_RDONLY);
+int	check_the_file(char *s)
+{
+	int fd;
+
+	fd = open(s, O_RDONLY);
 	if (fd < 0)
 		return (close(fd), 0);
 	close (fd);
-	fd = open("./xpms/1.xpm", O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close (fd);
-	fd = open("./xpms/collectible.xpm", O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close(fd);
-	fd = open("./xpms/exit.xpm", O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close(fd);
-	fd = open("./xpms/player.xpm", O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close(fd);
-	fd = open("./xpms/win.xpm", O_RDONLY);
-	if (fd < 0)
-		return (close(fd), 0);
-	close(fd);
 	return (1);
 }

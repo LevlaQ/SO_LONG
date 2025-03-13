@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/12 17:40:48 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:40 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef	struct s_tile
 	void	*collect;
 	void	*exit;
 	void	*win;
+	void	*over;
+	void	*A;
 }			t_tile;
 
 typedef	struct s_minx
@@ -64,6 +66,7 @@ int		error_main(int argc, char **argv, t_map *st);
 int		check_filename(char *s);
 int		verify_file(char *s);
 int		check_xpm_files(void);
+int		check_the_file(char *s);
 size_t	ft_strlen_modified(char *s);
 int		check_map_chars(char *s);
 int		check_map_elements(char *s);
@@ -71,7 +74,7 @@ int		file_to_string_matrix(char *s, t_map *st);
 int		validate_map_shape(t_map *st);
 int		validate_walls(t_map *st);
 void	count_the_coins(t_map *st, char *s);
-int		find_the_char(t_map *st, char c);
+int		find_the_char(t_map *st, char **map, char c);
 void	flood_exit(t_map *st, int y, int x);
 int		player_can_escape(t_map *st);
 void	print_the_map(t_map *st); //Debug fonksiyonu
@@ -81,15 +84,12 @@ void	pointer_to_xpm(t_map *map);
 void	measure_map(t_map *map);
 void	render_tiles(t_map *map, int y, int x);
 void	put_image_to_window(t_map *map, int x, int y, void *img_ptr);
-void	*put_xpm_to_file(t_map *map, char *filepath);
+void	*put_xpm_file_to_image(t_map *map, char *filepath);
 void	process_input(t_map *map);
 int		keyhook(int keycode, t_map *map);
-void	move_left(t_map *map);
-void	move_right(t_map *map);
-void	move_up(t_map *map);
-void	move_down(t_map *map);
-void	exit_the_program(void);
-
+void	move_the_player(t_map *map, int y, int x);
+void	move_one_tile_ahead(t_map *map, int y, int x, char new_position);
+int		exit_the_program(t_map *st);
 
 
 #endif
