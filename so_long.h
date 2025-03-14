@@ -6,23 +6,22 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:58:11 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/14 00:21:21 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 03:06:49 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "./Libft/libft.h"
-#include "./minilibx-linux/mlx.h"
-#include <errno.h>
-#include <fcntl.h> //open();
-#include <unistd.h> //close(); read(); write();
-#include <stdlib.h> // malloc(); free(); exit();
-#include <stdio.h> //perror();
-#include <string.h> //strerror();
+# include "./Libft/libft.h"
+# include "./minilibx-linux/mlx.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-typedef	struct s_tile
+typedef struct s_tile
 {
 	void	*floor;
 	void	*wall;
@@ -33,26 +32,25 @@ typedef	struct s_tile
 	void	*over;
 }			t_tile;
 
-typedef	struct s_minx
+typedef struct s_minx
 {
 	void	*mlx_ptr;
 	void	*mlx_window;
 }			t_minx;
 
-typedef	struct s_map
+typedef struct s_map
 {
 	char	**map;
 	char	**map_copy;
 	char	behind;
 	int		m_width;
 	int		m_height;
-	int		P_y;
-	int		P_x;
-	int		C_count;
-	int		P_moves;
+	int		p_y;
+	int		p_x;
+	int		c_count;
+	int		p_moves;
 	t_tile	*tiles;
 	t_minx	*mlx;
-	
 }			t_map;
 
 char	*ft_strdup_modified(char *s1);
@@ -77,8 +75,6 @@ void	count_the_coins(t_map *st, char *s);
 int		find_the_char(t_map *st, char **map, char c);
 void	flood_exit(t_map *st, int y, int x);
 int		player_can_escape(t_map *st);
-void	print_the_map(t_map *st); //Debug fonksiyonu
-void	print_the_ori_map(t_map *st); //Debug fonksiyonu
 void	start_and_exit_game(t_map *map);
 void	pointer_to_xpm(t_map *map);
 void	measure_map(t_map *map);
@@ -90,6 +86,5 @@ int		keyhook(int keycode, t_map *map);
 void	move_the_player(t_map *map, int y, int x);
 void	move_one_tile_ahead(t_map *map, int y, int x, char new_position);
 int		exit_the_program(t_map *st);
-
 
 #endif

@@ -6,13 +6,14 @@
 #    By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 13:58:08 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/14 00:38:21 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/14 03:01:31 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =			so_long_main.c free_functions.c error_main.c utils.c\
-				error_map_chars.c error_map_shape.c debug_functions.c\
-				game_screen.c
+SRCS =			so_long_main.c free_functions.c error_main.c error_map_chars.c\
+				error_map_shape.c utils.c start_and_exit.c game_screen.c\
+				game_controls.c
+				
 				
 				
 OBJS =			$(SRCS:.c=.o)
