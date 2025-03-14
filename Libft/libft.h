@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:22:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/01 14:16:57 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 03:24:35 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 int		ft_printf(const char *s, ...);
 char	*get_next_line(int fd);
-
 
 #endif
