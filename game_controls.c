@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:01:44 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/14 03:06:39 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 10:13:19 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	keyhook(int keycode, t_map *map)
 	}
 	if (keycode == 65307)
 		exit_the_program(map);
+	return (1);
 }
 
 /*
@@ -75,6 +76,7 @@ void	move_the_player(t_map *map, int y, int x)
 	{
 		move_one_tile_ahead(map, y, x, 'W');
 		printf("\nYOU WON!\n");
+		exit_the_program(map);
 	}
 	else if (map->map[y][x] == 'E' && map->c_count != 0)
 		move_one_tile_ahead(map, y, x, 'A');

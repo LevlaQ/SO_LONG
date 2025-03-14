@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyildiz <gyildiz@student.42.fr>            +#+  +:+       +#+         #
+#    By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/28 13:21:49 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/02 13:07:19 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/14 10:12:39 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ SRCS =			ft_memset.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c\
 
 OBJS =			$(SRCS:.c=.o)
 
-CC =			gcc
+CC =			cc
 
-CFLAGS =		-g
+CFLAGS =		-Wall -Wextra -Werror
 
 all:			$(NAME)
 

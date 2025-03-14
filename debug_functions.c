@@ -1,18 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 10:15:01 by gyildiz           #+#    #+#             */
+/*   Updated: 2025/03/14 10:16:38 by gyildiz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-	Debug fonksiyonu
-*/
 void	print_the_map(t_map *st)
 {
-	int x = 0;
-	int y = 0;
+	int	x;
+	int	y;
 
-	while(st->map_copy[y] != NULL)
+	x = 0;
+	y = 0;
+	while (st->map_copy[y] != NULL)
 	{
 		x = 0;
-		while(st->map_copy[y][x] != '\0')
+		while (st->map_copy[y][x] != '\0')
 		{
 			printf("%c", st->map_copy[y][x]);
 			x++;
@@ -22,19 +32,17 @@ void	print_the_map(t_map *st)
 	}
 }
 
-
-/*
-	Debug fonksiyonu
-*/
 void	print_the_ori_map(t_map *st)
 {
-	int x = 0;
-	int y = 0;
+	int	x;
+	int	y;
 
-	while(st->map[y] != NULL)
+	x = 0;
+	y = 0;
+	while (st->map[y] != NULL)
 	{
 		x = 0;
-		while(st->map[y][x] != '\0')
+		while (st->map[y][x] != '\0')
 		{
 			printf("%c", st->map[y][x]);
 			x++;

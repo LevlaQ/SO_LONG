@@ -6,7 +6,7 @@
 #    By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 13:58:08 by gyildiz           #+#    #+#              #
-#    Updated: 2025/03/14 03:01:31 by gyildiz          ###   ########.fr        #
+#    Updated: 2025/03/14 10:12:19 by gyildiz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ LIBFT =			./Libft/libft.a
 
 MINXLIB =	./minilibx-linux/libmlx.a
 
-CC =			gcc
-CFLAGS =		-g
+CC =			cc
+CFLAGS =		-Wall -Wextra -Werror
 MLXFLAGS =		-Lminilibx-linux
 X =				-lmlx -lX11 -lXext
 

@@ -6,7 +6,7 @@
 /*   By: gyildiz <gyildiz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:54:38 by gyildiz           #+#    #+#             */
-/*   Updated: 2025/03/14 02:28:36 by gyildiz          ###   ########.fr       */
+/*   Updated: 2025/03/14 10:12:57 by gyildiz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	error_main(int argc, char **argv, t_map *st)
 int	check_filename(char *s)
 {
 	int		i;
-	char	*no_exten;
 
 	i = ft_strlen(s);
 	if (s[i - 1] != 'r')
